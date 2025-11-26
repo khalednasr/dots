@@ -1,4 +1,5 @@
-from decman import Module, sh
+from decman import Module, Directory, sh
+import variables
 
 class Nvim(Module):
     def __init__(self, enabled):
@@ -10,3 +11,9 @@ class Nvim(Module):
             "fzf",
             "ripgrep",
         ]
+
+    def directories(self) -> dict[str, Directory]:
+        return {
+            f"{variables.config_dir}/nvim": 
+                Directory(source_directory=f"./modules/nvim/config", owner=variables.username)
+        }

@@ -3,11 +3,13 @@ import variables
 import textwrap
 
 class Core(Module):
-    def __init__(self, enabled):
+    def __init__(self, enabled, cpu="amd"):
         super().__init__(name='Core', enabled=enabled, version=1.0)
+        self.cpu = cpu
 
     def pacman_packages(self) -> list[str]:
         return [
+            f"{self.cpu}-ucode",
             "base",
             "base-devel",
             "efibootmgr",
@@ -36,6 +38,7 @@ class Core(Module):
                     email = {variables.git_email}
                 [init]
                     defaultBranch = main
-                '''
-            ))
+                '''),
+                owner = variables.username
+                )
         }

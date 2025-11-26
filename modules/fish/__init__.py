@@ -13,6 +13,7 @@ class Fish(Module):
 
     def files(self) -> dict[str, File]:
         return {
-            f"{variables.config_dir}/fish/config.fish": File(source_file=f"./modules/fish/config/config.fish")
+            f"{variables.config_dir}/fish/config.fish": 
+                File(source_file=f"./modules/fish/config/config.fish", owner=variables.username)
         }
 
