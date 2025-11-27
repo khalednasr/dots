@@ -1,6 +1,5 @@
-from decman import Module, File
+from decman import Module, sh
 import variables
-import textwrap
 
 class Core(Module):
     def __init__(self, enabled, cpu="amd", gpus=[]):
@@ -35,16 +34,15 @@ class Core(Module):
             "yay-bin",
         ]
 
-    def files(self) -> dict[str, File]:
-        return {
-            f"/home/{variables.username}/.gitconfig": File(
-                content=textwrap.dedent(f'''
-                [user]
-                    name = {variables.git_username}
-                    email = {variables.git_email}
-                [init]
-                    defaultBranch = main
-                '''),
-                owner=variables.username
-            )
-        }
+    def on_enable(self):
+        sh(f"git config --global user.name {variables.git_username}",
+           user=variables.username,
+           env_overrides={"HOME": variables.home_dir})
+
+        sh(f"git config --global user.email {variables.git_email}",
+           user=variables.username,
+           env_overrides={"HOME": variables.home_dir})
+
+        sh("git config --global init.defaultBranch main",
+           user=variables.username,
+           env_overrides={"HOME": variables.home_dir})

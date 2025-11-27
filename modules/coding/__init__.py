@@ -25,6 +25,3 @@ class Coding(Module):
     def on_enable(self):
         if "rust" in self.languages:
             sh(f"HOME={variables.home_dir} rustup default stable", user=variables.username)
-
-    def after_version_change(self):
-        self.on_enable()
