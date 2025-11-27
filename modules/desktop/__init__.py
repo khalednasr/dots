@@ -21,7 +21,7 @@ class Desktop(Module):
             "cliphist",
             "pipewire",
             "pipewire-jack",
-            # "polkit-gnome",
+            "polkit-gnome",
 
             # DMS optional depedencies
             "qt6-multimedia",
@@ -42,7 +42,8 @@ class Desktop(Module):
 
 
             # Utilities
-            "udiskie"
+            "udiskie",
+            "gnome-disk-utility",
         ]
 
         if self.laptop:

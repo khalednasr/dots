@@ -1,4 +1,4 @@
-from decman import Module, sh
+from decman import Module, File, sh
 import variables
 
 class Coding(Module):
@@ -25,3 +25,9 @@ class Coding(Module):
     def on_enable(self):
         if "rust" in self.languages:
             sh(f"HOME={variables.home_dir} rustup default stable", user=variables.username)
+
+    def files(self) -> dict[str, File]:
+        return {
+            f"{variables.config_dir}/direnv/direnv.toml":
+                File(content='[global]\nlog_filter="^$"', owner=variables.username)
+        }

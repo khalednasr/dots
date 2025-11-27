@@ -7,13 +7,12 @@ class Fish(Module):
 
     def pacman_packages(self) -> list[str]:
         return ["fish"]
-    
+
     def on_enable(self):
         sh("chsh -s /usr/bin/fish", user=variables.username)
 
     def files(self) -> dict[str, File]:
         return {
-            f"{variables.config_dir}/fish/config.fish": 
-                File(source_file=f"./modules/fish/config/config.fish", owner=variables.username)
+            f"{variables.config_dir}/fish/config.fish":
+                File(source_file="./modules/fish/config/config.fish", owner=variables.username)
         }
-
