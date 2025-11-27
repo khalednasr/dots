@@ -73,6 +73,11 @@ class Desktop(Module):
 
     def files(self) -> dict[str, File]:
         return {
+            # Ly config
+            # Niri config
+            "/etc/ly/config.ini":
+                File(source_file="./modules/desktop/config/ly/config.ini"),
+
             # Niri config
             f"{variables.config_dir}/niri/config.kdl":
                 File(source_file="./modules/desktop/config/niri/config.kdl", owner=variables.username),
@@ -85,18 +90,16 @@ class Desktop(Module):
                     font_family 0xProtoNerdFontMono
                     map super+shift+t launch --cwd=current --type=os-window
                 '''),
-                owner=variables.username
-            ),
+                owner=variables.username),
 
             # GTK/DMS theming
             f"{variables.config_dir}/gtk-3.0/gtk.css": File(
                 content='@import url("dank-colors.css");',
-                owner=variables.username
-            ),
+                owner=variables.username),
+
             f"{variables.config_dir}/gtk-4.0/gtk.css": File(
                 content='@import url("dank-colors.css");',
-                owner=variables.username
-            ),
+                owner=variables.username),
         }
 
     def systemd_units(self) -> list[str]:
