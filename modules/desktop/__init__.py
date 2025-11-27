@@ -1,6 +1,7 @@
-from decman import Module, File
+from decman import Module, File, sh
 import variables
 import textwrap
+import os
 
 class Desktop(Module):
     def __init__(self, enabled, laptop=False):
@@ -27,6 +28,7 @@ class Desktop(Module):
             "qt6-multimedia-gstreamer",
             "matugen",
             "cava",
+            "adw-gtk-theme",
 
             # Terminal
             "kitty",
@@ -36,6 +38,8 @@ class Desktop(Module):
 
             # Fonts
             "noto-fonts",
+            "ttf-0xproto-nerd",
+
 
             # Utilities
             "udiskie"
@@ -50,11 +54,21 @@ class Desktop(Module):
         return packages
 
     def aur_packages(self) -> list[str]:
+        # Firefox theming with DMS
+        home = variables.home_dir
+        if os.path.exists(f"{home}/.cache/wal/dank-pywalfox.json"):
+            sh(f"ln -sf {home}/.cache/wal/dank-pywalfox.json {home}/.cache/wal/colors.json")
+
         return [
             # DMS and optional dependencies
             "dms-shell-bin",
             "dgop-bin",
             "dsearch-bin",
+            "python-pywalfox",  # firefox theming
+            "qt6ct-kde",  # QT theming
+
+            # Cursor themes
+            "bibata-cursor-theme-bin",
         ]
 
     def files(self) -> dict[str, File]:
@@ -68,7 +82,19 @@ class Desktop(Module):
                 content=textwrap.dedent('''
                     include dank-tabs.conf
                     include dank-theme.conf
+                    font_family 0xProtoNerdFontMono
+                    map super+shift+t launch --cwd=current --type=os-window
                 '''),
+                owner=variables.username
+            ),
+
+            # GTK/DMS theming
+            f"{variables.config_dir}/gtk-3.0/gtk.css": File(
+                content='@import url("dank-colors.css");',
+                owner=variables.username
+            ),
+            f"{variables.config_dir}/gtk-4.0/gtk.css": File(
+                content='@import url("dank-colors.css");',
                 owner=variables.username
             ),
         }
