@@ -21,6 +21,7 @@ class Core(Module):
             "github-cli",
             "yazi",
             "less",
+            "ntfs-3g",  # for mounting windows NTFS drives
         ]
 
         if "nvidia" in self.gpus:
