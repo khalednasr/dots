@@ -21,7 +21,7 @@ if hostname == "numerino":
     laptop = False
     gaming = True
     displays = {
-        "DP-1": {
+        "DP-2": {
             "mode": "2560x1440@143.972",
             "scale": "1",
         },
