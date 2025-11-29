@@ -4,9 +4,8 @@ import textwrap
 import os
 
 class Desktop(Module):
-    def __init__(self, enabled, laptop=False):
+    def __init__(self, enabled):
         super().__init__(name='Core', enabled=enabled, version=1.01)
-        self.laptop = laptop
 
     def pacman_packages(self) -> list[str]:
         packages = [
@@ -46,7 +45,12 @@ class Desktop(Module):
             "gnome-disk-utility",
         ]
 
-        if self.laptop:
+        if variables.gaming:
+            packages += [
+                "steam"
+            ]
+
+        if variables.laptop:
             packages += [
                 "brightnessctl",
                 "power-profiles-daemon",
@@ -75,7 +79,6 @@ class Desktop(Module):
     def files(self) -> dict[str, File]:
         return {
             # Ly config
-            # Niri config
             "/etc/ly/config.ini":
                 File(source_file="./modules/desktop/config/ly/config.ini"),
 

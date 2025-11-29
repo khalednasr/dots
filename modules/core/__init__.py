@@ -1,15 +1,13 @@
-from decman import Module, sh
+from decman import Module, File, sh
 import variables
 
 class Core(Module):
-    def __init__(self, enabled, cpu="amd", gpus=[]):
+    def __init__(self, enabled):
         super().__init__(name='Core', enabled=enabled, version=1.0)
-        self.cpu = cpu
-        self.gpus = gpus
 
     def pacman_packages(self) -> list[str]:
         packages = [
-            f"{self.cpu}-ucode",
+            f"{variables.cpu}-ucode",
             "base",
             "base-devel",
             "efibootmgr",
@@ -24,7 +22,7 @@ class Core(Module):
             "ntfs-3g",  # for mounting windows NTFS drives
         ]
 
-        if "nvidia" in self.gpus:
+        if "nvidia" in variables.gpus:
             packages += ["nvidia-open", "nvidia-settings"]
 
         return packages
@@ -47,3 +45,11 @@ class Core(Module):
         sh("git config --global init.defaultBranch main",
            user=variables.username,
            env_overrides={"HOME": variables.home_dir})
+
+    def files(self) -> dict[str, File]:
+        return {
+            # Pacman config
+            # Niri config
+            "/etc/pacman.conf":
+                File(source_file="./modules/core/config/pacman/pacman.conf"),
+        }
