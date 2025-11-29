@@ -15,11 +15,14 @@ class Core(Module):
             "linux-firmware",
             "networkmanager",
             "zram-generator",
+            "grub",
+            "ntfs-3g",  # for mounting windows NTFS drives
+            "os-prober", # for grub to find windows
+            "fuse3", # also for grub to find windows
+            "less",
+            "yazi",
             "git",
             "github-cli",
-            "yazi",
-            "less",
-            "ntfs-3g",  # for mounting windows NTFS drives
         ]
 
         if "nvidia" in variables.gpus:

@@ -14,3 +14,15 @@ if hostname == "yoyo":
     gpus = ["amd", "nvidia"]
     laptop = True
     gaming = True
+
+if hostname == "numerino":
+    cpu = "intel"
+    gpus = ["nvidia"]
+    laptop = False
+    gaming = True
+    displays = {
+        "DP-1": {
+            "mode": "2560x1440@143.972",
+            "scale": "1",
+        },
+    }

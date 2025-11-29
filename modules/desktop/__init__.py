@@ -106,5 +106,21 @@ class Desktop(Module):
                 owner=variables.username),
         }
 
+    def file_variables(self) -> dict[str, str]:
+
+        niri_display_config = ""
+
+        for display, conf in variables.displays.items():
+            niri_display_config += textwrap.dedent('''
+                output "%s" {
+                    mode "%s"
+                    scale %s
+                }
+            ''' % (display, conf['mode'], conf['scale']))
+
+        return {
+            "//%NIRI_OUTPUT_CONFIGURATION%//": niri_display_config
+        }
+
     def systemd_units(self) -> list[str]:
         return ["ly.service"]
