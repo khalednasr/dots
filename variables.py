@@ -13,13 +13,15 @@ if hostname == "yoyo":
     cpu = "amd"
     gpus = ["amd", "nvidia"]
     laptop = True
-    gaming = True
+    dualboot = True
+    gaming = False
 
 if hostname == "numerino":
     cpu = "intel"
     gpus = ["nvidia"]
     laptop = False
-    gaming = True
+    dualboot = True
+    gaming = False
     displays = {
         "DP-2": {
             "mode": "2560x1440@143.972",

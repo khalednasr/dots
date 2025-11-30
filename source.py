@@ -7,4 +7,5 @@ decman.modules = [
     modules.Nvim(enabled=True),
     modules.Coding(enabled=True),
     modules.Desktop(enabled=True),
+    modules.NordVPN(enabled=True),
 ]

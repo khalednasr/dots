@@ -16,9 +16,6 @@ class Core(Module):
             "networkmanager",
             "zram-generator",
             "grub",
-            "ntfs-3g",  # for mounting windows NTFS drives
-            "os-prober", # for grub to find windows
-            "fuse3", # also for grub to find windows
             "less",
             "yazi",
             "git",
@@ -27,6 +24,13 @@ class Core(Module):
 
         if "nvidia" in variables.gpus:
             packages += ["nvidia-open", "nvidia-settings"]
+
+        if variables.dualboot:
+            packages += [
+                "ntfs-3g",  # for mounting windows NTFS drives
+                "os-prober",  # for grub to find windows
+                "fuse3",  # also for grub to find windows
+            ]
 
         return packages
 
@@ -48,6 +52,10 @@ class Core(Module):
         sh("git config --global init.defaultBranch main",
            user=variables.username,
            env_overrides={"HOME": variables.home_dir})
+
+        if variables.dualboot:
+            sh("echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub")
+            sh("grub-mkconfig -o /boot/grub/grub.cfg")
 
     def files(self) -> dict[str, File]:
         return {
