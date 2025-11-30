@@ -15,6 +15,12 @@ if hostname == "yoyo":
     laptop = True
     dualboot = True
     gaming = False
+    displays = {
+        "eDP-1": {
+            "mode": "3072x1920@120.002",
+            "scale": "1.75",
+        },
+    }
 
 if hostname == "numerino":
     cpu = "intel"

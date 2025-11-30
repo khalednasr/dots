@@ -20,6 +20,7 @@ class Core(Module):
             "yazi",
             "git",
             "github-cli",
+            "reflector",
         ]
 
         if "nvidia" in variables.gpus:

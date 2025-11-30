@@ -639,8 +639,8 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 
     // Browser
-    Mod+B hotkey-overlay-title="Firefox" { 
-        spawn "firefox";
+    Mod+B hotkey-overlay-title="zen" { 
+        spawn "zen-browser";
     }
 
     // DMS bindings

@@ -56,17 +56,9 @@ class Desktop(Module):
         return packages
 
     def aur_packages(self) -> list[str]:
-        # Firefox theming with DMS
-        # home = variables.home_dir
-        # if os.path.exists(f"{home}/.cache/wal/dank-pywalfox.json"):
-        #     sh(f"ln -sf {home}/.cache/wal/dank-pywalfox.json {home}/.cache/wal/colors.json")
-
         return [
             # DMS and optional dependencies
             "dms-shell-bin",
-            "dgop-bin",
-            "dsearch-bin",
-            # "python-pywalfox",  # firefox theming
             "qt6ct-kde",  # QT theming
 
             # Cursor themes
