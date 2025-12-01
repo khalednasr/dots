@@ -1,0 +1,17 @@
+colors midnight
+
+set allowautofocus false
+
+set smoothscroll true
+
+bind j scrollline 12
+bind k scrollline -12
+
+bind J tabnext
+bind K tabprev
+
+setpref sidebar.verticalTabs true
+setpref sidebar.visibility "expand-on-hover"
+setpref browser.ml.chat.menu false
+setpref browser.translations.neverTranslateLanguages "de"
+setpref browser.toolbars.bookmarks.visibility "never"

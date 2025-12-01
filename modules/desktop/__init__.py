@@ -37,9 +37,9 @@ class Desktop(Module):
             "qutebrowser",
 
             # Fonts
-            "noto-fonts",
             "ttf-0xproto-nerd",
-
+            "ttf-dejavu",
+            "ttf-liberation",
 
             # Utilities
             "udiskie",
@@ -68,7 +68,9 @@ class Desktop(Module):
             # Cursor themes
             "bibata-cursor-theme-bin",
 
-            "python-pywalfox",  # firefox theming
+            # Firefox stuff
+            "python-pywalfox",
+            "firefox-tridactyl-native",
         ]
 
     def files(self) -> dict[str, File]:
@@ -104,6 +106,10 @@ class Desktop(Module):
             f"{variables.config_dir}/gtk-4.0/gtk.css": File(
                 content='@import url("dank-colors.css");',
                 owner=variables.username),
+
+            # Firefox/Tridactyl config
+            f"{variables.config_dir}/tridactyl/tridactylrc":
+                File(source_file="./modules/desktop/config/tridactyl/tridactylrc", owner=variables.username),
         }
 
     def file_variables(self) -> dict[str, str]:
