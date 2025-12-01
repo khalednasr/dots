@@ -32,6 +32,10 @@ class Desktop(Module):
             # Terminal
             "kitty",
 
+            # Browsers
+            "firefox",
+            "qutebrowser",
+
             # Fonts
             "noto-fonts",
             "ttf-0xproto-nerd",
@@ -64,11 +68,15 @@ class Desktop(Module):
             # Cursor themes
             "bibata-cursor-theme-bin",
 
-            # Browser
-            "zen-browser-bin",
+            "python-pywalfox",  # firefox theming
         ]
 
     def files(self) -> dict[str, File]:
+        # Firefox theming with DMS
+        home = variables.home_dir
+        if os.path.exists(f"{home}/.cache/wal/dank-pywalfox.json"):
+            sh(f"ln -sf {home}/.cache/wal/dank-pywalfox.json {home}/.cache/wal/colors.json")
+
         return {
             # Ly config
             "/etc/ly/config.ini":
