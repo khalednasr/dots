@@ -41,6 +41,13 @@ class Desktop(Module):
             "ttf-dejavu",
             "ttf-liberation",
 
+            # Bluetooth.
+            # Unblock using rfkill unblock <NUM>. Get NUM of hci0 using rfkill
+            "bluez",
+            "bluez-utils",
+            "bluez-deprecated-tools",
+
+
             # Utilities
             "udiskie",
             "gnome-disk-utility",
@@ -129,4 +136,7 @@ class Desktop(Module):
         }
 
     def systemd_units(self) -> list[str]:
-        return ["ly.service"]
+        return [
+            "ly.service",
+            "bluetooth.service",
+        ]
