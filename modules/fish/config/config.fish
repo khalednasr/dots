@@ -1,9 +1,12 @@
 set -g fish_greeting
 
 alias sdecman="sudo decman"
-alias ce="cd ~/dots && nvim"
-alias cs="cd ~/dots && git status && cd -"
-alias cu="cd ~/dots && git add --all && git commit -m 'update' && git push && cd -"
+
+alias cedit="cd ~/dots && nvim"
+alias cstatus="cd ~/dots && git status && cd -"
+alias cpush="cd ~/dots && git add --all && git commit -m 'update' && git push && cd -"
+alias cpull="cd ~/dots && git pull && cd -"
+
 alias reflector-update=" sudo reflector --country Germany --latest 5 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
 
 
