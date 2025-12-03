@@ -42,7 +42,6 @@ class Desktop(Module):
             "ttf-liberation",
 
             # Bluetooth.
-            # Unblock using rfkill unblock <NUM>. Get NUM of hci0 using rfkill
             "bluez",
             "bluez-utils",
             "bluez-deprecated-tools",
@@ -140,3 +139,6 @@ class Desktop(Module):
             "ly.service",
             "bluetooth.service",
         ]
+
+    def on_enable(self):
+        sh("rfkill unblock bluetooth")
