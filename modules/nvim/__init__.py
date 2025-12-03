@@ -1,10 +1,10 @@
-from decman import Module, Directory, sh
+from decman import Module, Directory
 import variables
 
 class Nvim(Module):
     def __init__(self, enabled):
         super().__init__(name='Neovim', enabled=enabled, version=1.0)
-    
+
     def pacman_packages(self) -> list[str]:
         return [
             "neovim",
@@ -14,6 +14,6 @@ class Nvim(Module):
 
     def directories(self) -> dict[str, Directory]:
         return {
-            f"{variables.config_dir}/nvim": 
-                Directory(source_directory=f"./modules/nvim/config", owner=variables.username)
+            f"{variables.config_dir}/nvim":
+                Directory(source_directory="./modules/nvim/config", owner=variables.username)
         }

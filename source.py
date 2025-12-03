@@ -5,6 +5,7 @@ decman.modules = [
     modules.Core(enabled=True),
     modules.Fish(enabled=True),
     modules.Nvim(enabled=True),
+    modules.Yazi(enabled=True),
     modules.Coding(enabled=True),
     modules.Desktop(enabled=True),
     modules.NordVPN(enabled=True),

@@ -7,7 +7,8 @@ wk.add({
   { "<leader>x", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
 
    -- top pickers & explorer
-  { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+  { "<leader>e","<cmd>Yazi cwd<cr>", desc = "File Explorer (current working directory)" },
+  { "<leader>E","<cmd>Yazi<cr>", desc = "File Explorer (current buffer)" },
   { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
 
   -- find

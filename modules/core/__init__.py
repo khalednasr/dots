@@ -16,11 +16,13 @@ class Core(Module):
             "networkmanager",
             "zram-generator",
             "grub",
+            "reflector",
+
+            # CLI tools
             "less",
-            "yazi",
             "git",
             "github-cli",
-            "reflector",
+            "ouch",
         ]
 
         if "nvidia" in variables.gpus:

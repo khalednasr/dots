@@ -5,7 +5,7 @@ return {
     lazy = false,
     opts = {
       dashboard = { enabled = true },
-      explorer = { enabled = true },
+      -- explorer = { enabled = true },
       picker = {
         enabled = true,
         sources = {
