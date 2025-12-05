@@ -19,6 +19,7 @@ class Core(Module):
             "reflector",
 
             # CLI tools
+            "man-db",
             "less",
             "git",
             "github-cli",

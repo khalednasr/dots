@@ -34,7 +34,6 @@ class Desktop(Module):
 
             # Browsers
             "firefox",
-            "qutebrowser",
 
             # Fonts
             "ttf-0xproto-nerd",
@@ -43,9 +42,6 @@ class Desktop(Module):
 
             # Bluetooth.
             "bluez",
-            "bluez-utils",
-            "bluez-deprecated-tools",
-
 
             # Utilities
             "udiskie",
@@ -116,6 +112,28 @@ class Desktop(Module):
             # Firefox/Tridactyl config
             f"{variables.config_dir}/tridactyl/tridactylrc":
                 File(source_file="./modules/desktop/config/tridactyl/tridactylrc", owner=variables.username),
+
+
+            # Bluetooth unblock service
+            "/etc/systemd/system/bluetooth-unblock.service": File(
+                content=textwrap.dedent('''
+                    [Unit]
+                    Description=Unblock bluetooth using rfkill
+                    After=bluetooth.service
+                    Requires=bluetooth.service
+
+                    [Service]
+                    Type=oneshot
+                    ExecStart=/usr/bin/rfkill unblock bluetooth
+                    ExecStop=
+                    RemainAfterExit=true
+                    StandardOutput=journal
+
+                    [Install]
+                    WantedBy=multi-user.target
+                '''),
+                owner=variables.username),
+
         }
 
     def file_variables(self) -> dict[str, str]:
@@ -138,7 +156,5 @@ class Desktop(Module):
         return [
             "ly.service",
             "bluetooth.service",
+            "bluetooth-unblock.service",
         ]
-
-    def on_enable(self):
-        sh("rfkill unblock bluetooth")

@@ -1,4 +1,5 @@
 set -g fish_greeting
+set -x fifc_editor nvim
 
 alias sdecman="sudo decman"
 
@@ -7,7 +8,7 @@ alias cstatus="cd ~/dots && git status && cd -"
 alias cpush="cd ~/dots && git add --all && git commit -m 'update' && git push && cd -"
 alias cpull="cd ~/dots && git pull && cd -"
 
-alias reflector-update=" sudo reflector --country Germany --latest 5 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
+alias reflector-update="sudo reflector --country Germany --latest 5 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
 
 
 function direnv_init_pixi
@@ -29,4 +30,5 @@ if status is-interactive
 
     direnv hook fish | source
     starship init fish | source
+    fzf --fish | source
 end
